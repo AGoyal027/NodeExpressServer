@@ -558,7 +558,19 @@ app.get('/users', (req, res) => {
 });
 
 app.get('/albums', (req, res) => {
-    res.send(ALBUMS);
+    res.json(ALBUMS);
+});
+
+app.get('/about', (req, res)=>{
+    res.sendFile(__dirname + '/pages/about.html');
+});
+
+app.get('/download-node-icon', (req, res)=>{
+    res.download(__dirname + '/assets/node-icon.png');
+});
+
+app.get('/about-us', (req, res)=>{
+    res.redirect('/about');
 });
 
 app.listen(3000, () => {
@@ -587,4 +599,13 @@ const server = createServer((req, res) => {
 server.listen(3000, () => {
     console.log('Server is up :)');
 });
+
+# Request Methods:
+- res.send()
+- res.sendFile()
+- res.json()
+- res.download()
+- res.redirect()
+
+
 */
