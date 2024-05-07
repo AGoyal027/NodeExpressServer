@@ -549,6 +549,20 @@ const ALBUMS = [
     }
 ]
 
+const customMiddleware = (req, res, next) => {
+    req.customInfo = 20;
+    console.log('Middleware is in progress');
+    next();
+}
+
+const customMiddleware2 = (req, res, next) => {
+    console.log('Middleware 2 is in progress');
+    next();
+}
+
+// app.use(customMiddleware);
+// app.use(customMiddleware2);
+
 app.get('/', (req, res) => {
     res.send('Our first express application :)');
 });
@@ -561,7 +575,7 @@ app.get('/albums', (req, res) => {
     res.json(ALBUMS);
 });
 
-app.get('/about', (req, res)=>{
+app.get('/about', customMiddleware, customMiddleware2, (req, res)=>{
     res.sendFile(__dirname + '/pages/about.html');
 });
 
@@ -576,10 +590,6 @@ app.get('/about-us', (req, res)=>{
 app.listen(3000, () => {
     console.log('Server is up :)');
 });
-
-
-
-
 
 
 
@@ -606,6 +616,4 @@ server.listen(3000, () => {
 - res.json()
 - res.download()
 - res.redirect()
-
-
 */
