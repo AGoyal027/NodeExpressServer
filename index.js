@@ -561,6 +561,7 @@ const customMiddleware2 = (req, res, next) => {
 }
 
 app.use(express.static('public'))
+
 // app.use(customMiddleware);
 // app.use(customMiddleware2);
 
@@ -568,7 +569,13 @@ app.get('/', (req, res) => {
     res.send('Our first express application :)');
 });
 
-app.get('/users', (req, res) => {
+app.get('/shop', (req, res) => {
+    console.log(req.query);
+    res.send('Welcome to the shop');
+});
+
+app.get('/users/:username', (req, res) => {
+    console.log(req.params);
     res.send(USERS);
 });
 
