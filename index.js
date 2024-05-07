@@ -560,6 +560,7 @@ const customMiddleware2 = (req, res, next) => {
     next();
 }
 
+app.use(express.static('public'))
 // app.use(customMiddleware);
 // app.use(customMiddleware2);
 
@@ -575,8 +576,8 @@ app.get('/albums', (req, res) => {
     res.json(ALBUMS);
 });
 
-app.get('/about', customMiddleware, customMiddleware2, (req, res)=>{
-    res.sendFile(__dirname + '/pages/about.html');
+app.get('/about', (req, res)=>{
+    res.sendFile(__dirname + '/public/about.html');
 });
 
 app.get('/download-node-icon', (req, res)=>{
